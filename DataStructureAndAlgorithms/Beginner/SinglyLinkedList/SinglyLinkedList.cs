@@ -1,10 +1,12 @@
+using System.Collections;
+
 namespace DataStructureAndAlgorithms.Beginner.SinglyLinkedList;
 
-public class SinglyLinkedList<T>
+public class SinglyLinkedList<T> : IEnumerable<T>
 {
     private NodeClass<T> head; // ro'yxatni boshlanishi
     private int count; // ro'yxat uzunligi
-  
+
     public SinglyLinkedList()
     {
         head = null;
@@ -42,7 +44,6 @@ public class SinglyLinkedList<T>
         head = newNode;
         count++;
     }
-
     public bool Remove(T data)
     {
         if (head == null) return false;
@@ -56,7 +57,7 @@ public class SinglyLinkedList<T>
 
         NodeClass<T> current = head;
 
-        while (current.Next != null && !current.Next.Equals(data))
+        while (current.Next != null && !current.Next.Data.Equals(data))
         {
             current = current.Next;
         }
@@ -68,14 +69,11 @@ public class SinglyLinkedList<T>
         return true;
     }
 
-
-
     // Print all elements
-
     public void PrintAll()
     {
         var current = head;
-        while(current != null)
+        while (current != null)
         {
             Console.WriteLine(current.Data);
             current = current.Next;
@@ -83,25 +81,37 @@ public class SinglyLinkedList<T>
 
         Console.WriteLine("That's it!");
     }
-
-
     public int Length()
     {
         return count;
     }
-
-
     // Search element
     public bool Contains(T value)
     {
         var current = head;
 
-        while(current != null)
+        while (current != null)
         {
-            if(current.Data.Equals(value)) return true;
+            if (current.Data.Equals(value)) return true;
             current = current.Next;
         }
 
-        return false;   
+        return false;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        var current = head;
+        while (current != null)
+        {
+            yield return current.Data;
+            current = current.Next;
+        }
+    }
+
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
