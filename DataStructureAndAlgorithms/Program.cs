@@ -1,9 +1,7 @@
-using DataStructureAndAlgorithms.Beginner.DoublyLinkedList;
+using DataStructureAndAlgorithms.Beginner.Fibonacci;
 
-var dubly = new DublyLinkedList();
+var f = new FibonacciWithDynamicProgramming();
 
+int r = f.FindFibonacci(5);
 
-dubly.AddFirst(1);
-dubly.AddFirst(2);
-dubly.AddFirst(3);
-dubly.PrintForward();
+Console.WriteLine(r);
