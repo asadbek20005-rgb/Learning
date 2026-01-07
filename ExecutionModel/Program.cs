@@ -1,0 +1,1 @@
+ExecutionModel.Reflection.ViewTypeInformation.System.Main();
